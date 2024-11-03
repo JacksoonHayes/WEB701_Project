@@ -1,0 +1,10 @@
+<div class="product-catalog">
+    <div *ngFor="let product of products" class="product-card">
+        <img [src]="product.image" alt="{{product.name}}" class="product-image"/>
+        <h3>{{ product.name }}</h3>
+        <p><strong>${{ product.price }} for {{ product.baseWeight }}</strong></p>
+        <p *ngIf="product.discount">Discount: {{ product.discount }}%</p>
+        <button class="btn btn-custom" (click)="viewProduct(product._id)">View Product</button>
+    </div>
+ </div>
+ 

@@ -1,0 +1,52 @@
+<div class="product-detail-container" *ngIf="product">
+    <div class="image-section">
+        <img [src]="product.image" alt="{{ product.name }}" class="product-image"/>
+    </div>
+
+    <div class="details-section">
+        <h2>{{ product.name }}</h2>
+        <p class="price">Price: ${{ displayedPrice }} (per {{ selectedWeight }})</p>
+
+        <!-- Product Description -->
+        <p class="description">{{ product.description }}</p>
+        
+        <!-- Quantity Selector -->
+        <div class="quantity-selector">
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" [(ngModel)]="quantity" min="1" />
+        </div>
+
+        <!-- Weight Options -->
+        <div class="weight-options">
+            <p>Selected Weight: {{ selectedWeight }}</p>
+            <div class="option-buttons">
+                <button 
+                    *ngFor="let weight of weights"
+                    [class.active]="selectedWeight === weight" 
+                    (click)="selectWeight(weight)">
+                    {{ weight }}
+                </button>
+            </div>
+        </div>
+        
+        <!-- Purchase Options -->
+        <div class="payment-options">
+            <p>Purchase Option: {{ selectedOption }}</p>
+            <div class="option-buttons">
+                <button 
+                    [class.active]="selectedOption === 'One-time Purchase'" 
+                    (click)="selectOption('One-time Purchase')">
+                    One-time Purchase
+                </button>
+                <button 
+                    [class.active]="selectedOption === 'Monthly Subscription'" 
+                    (click)="selectOption('Monthly Subscription')">
+                    Monthly Subscription
+                </button>
+            </div>
+        </div>
+
+        <!-- Add to Cart Button -->
+        <button (click)="addToCart()" class="btn btn-primary-custom">Add to Cart</button>
+    </div>
+</div>

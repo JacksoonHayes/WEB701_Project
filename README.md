@@ -8,3 +8,31 @@ We require the following features on the website:
 2.	Members use the website to register their products and services, and beneficiaries use the system to acquire tokens.
 3.	Interactive element(s) that engages the website user.
 4.	The system provides an interface that the members can use to accept a token in a transaction.
+
+## Running the App
+1. Install dependencies
+```bash
+npm install
+```
+
+2. Create a .env file in the root directory and add the following:
+```bash
+PORT=3001
+MONGODB_URI=mongodb+srv://dbAdmin:admin@growandgive.x8icc.mongodb.net/?retryWrites=true&w=majority&appName=growandgive
+JWT_SECRET="secret"
+```
+
+3. To run the backend server, run the following:
+```bash
+nodemon
+```
+
+4. Install Angular dependencies by running the following in the /frontend directory:
+```bash
+npm install
+```
+
+5. To run the Angular frontend, run the following in the /frontend directory:
+```bash
+ng serve
+```

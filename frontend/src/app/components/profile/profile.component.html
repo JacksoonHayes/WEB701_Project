@@ -1,0 +1,56 @@
+<div class="profile-container container">
+    <div *ngIf="user" class="row">
+        <!-- Left Column: User Information and Password Update -->
+        <div class="col-md-5 profile-left">
+            <h1>Hello, {{ user.name }}!</h1>
+            <ul class="list-group mb-4">
+                <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                <li class="list-group-item"><strong>Name:</strong> {{ user.name }}</li>
+            </ul>
+
+            <div class="update-password-container">
+                <h4>Update Your Password</h4>
+                <form (submit)="updateDetails()">
+                    <div class="form-group">
+                        <input type="password" id="password" [(ngModel)]="newPassword" name="password" class="form-control" placeholder="Enter new password" required>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-custom">Submit Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Right Column: Order History in Table -->
+        <div class="col-md-6 offset-md-1 profile-right">
+            <h3>Your Orders</h3>
+            <div *ngIf="orders.length === 0" class="text-center">
+                <p>You have not placed any orders yet.</p>
+            </div>
+            <div *ngIf="orders.length > 0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Date</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let order of orders">
+                            <td>{{ order._id }}</td>
+                            <td>{{ order.orderDate | date }}</td>
+                            <td>
+                                <ul class="order-details">
+                                    <li *ngFor="let item of order.items">
+                                        {{ item.productId?.name }} - {{ item.quantity }}x ({{ item.weight }}) - ${{ item.price }}
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

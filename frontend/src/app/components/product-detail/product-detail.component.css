@@ -1,0 +1,105 @@
+.product-detail-container {
+    display: flex;
+    gap: 50px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.image-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.details-section {
+    flex: 1;
+    margin-top: 50px;
+}
+
+h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: #e74c3c;
+    margin-bottom: 15px;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.quantity-selector {
+    margin-bottom: 20px;
+}
+
+.weight-options {
+    margin-bottom: 30px;
+}
+
+.payment-options {
+    margin-bottom: 40px;
+}
+
+.quantity-selector label,
+.weight-options p,
+.payment-options p {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.option-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.option-buttons button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #dcdcdc;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.option-buttons button.active {
+    background-color: #f9eafa;
+    color: #333;
+    border: 1px solid #c0c0c0;
+}
+.option-buttons button.active:hover {
+    background-color: #f5d1fc;
+}
+
+.option-buttons button:hover {
+    background-color: #c0c0c0;
+}
+
+.btn-primary-custom {
+    background-color: #516e2b;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    background-color: #3a4c1b;
+}

@@ -1,0 +1,18 @@
+<div class="container">
+    <h2 class="page-header">Login</h2>
+    <form (ngSubmit)="onLoginSubmit()">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" [(ngModel)]="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" [(ngModel)]="password" name="password">
+        </div> 
+        <div class="text-center">
+            <input type="submit" class="btn btn-custom" value="Submit">
+            <a class="btn btn-custom" routerLink="/register">Register</a>
+        </div>
+    </form>
+  </div>
+  

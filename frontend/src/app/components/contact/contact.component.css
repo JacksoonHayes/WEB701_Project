@@ -1,0 +1,18 @@
+.container {
+    padding-top: 50px;
+}
+.accordion {
+    margin-top: 40px;
+}
+.btn-custom {
+    background-color: #f9eafa;
+    border-radius: 10px;
+    color: rgb(74, 74, 74);
+    font-size: 14px;
+    padding: 10px 20px; 
+    border: 1px solid #c0c0c0;
+  }
+  
+  .btn-custom:hover {
+    background-color: #f5d1fc;
+  }
