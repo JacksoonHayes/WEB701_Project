@@ -1,7 +1,8 @@
 .container {
-    padding-top: 50px;
+    margin-top: 50px;
     width: 500px;
 }
+
 .form-group {
     margin-top: 25px;
 }

@@ -1,9 +1,10 @@
 // recipe.component.ts
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-recipe',
@@ -12,13 +13,24 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.css']
 })
-export class RecipeComponent {
+export class RecipeComponent implements OnInit {
   ingredients: string = '';
   recipe: string = '';
   displayedText: string = ''; // For typewriter effect
   typingSpeed: number = 15; // Speed in ms per character
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService  
+    ) {}
+
+  ngOnInit() {
+    // Check if the user is logged in
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    }
+  }
 
   generateRecipe() {
     const ingredientList = this.ingredients.split(',').map(ing => ing.trim());

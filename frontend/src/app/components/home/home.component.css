@@ -1,7 +1,8 @@
 .jumbotron {
   margin-top: 100px;
   margin-bottom: 150px;
-}  
+} 
+
 p {
   padding-bottom: 20px;
 }
@@ -46,7 +47,11 @@ p {
   margin-top: 90px;
 }
 
-#bottom-row {
+#how-text {
   padding-top: 30px;
+  margin-right: 20px;
 }
 
+#our-story-text {
+  margin-left: 20px;
+}

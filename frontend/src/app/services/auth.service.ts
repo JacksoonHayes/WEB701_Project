@@ -13,9 +13,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-    getIsLoggedIn() {
-      return this.isLoggedInSubject.asObservable();
-    }
+  getIsLoggedIn() {
+    return this.isLoggedInSubject.asObservable();
+  }
 
   registerUser(user: any) {
     let headers = new HttpHeaders();
