@@ -1,7 +1,7 @@
 .product-detail-container {
     display: flex;
     gap: 50px;
-    margin: 20px auto;
+    margin: 25px 0;
     padding: 20px;
 }
 
@@ -20,7 +20,6 @@
 
 .details-section {
     flex: 1;
-    margin-top: 50px;
 }
 
 h2 {
@@ -92,8 +91,8 @@ h2 {
 .btn-primary-custom {
     background-color: #516e2b;
     color: white;
-    padding: 12px 25px;
-    font-size: 1.1rem;
+    padding: 10px 20px;
+    font-size: 0.9rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;

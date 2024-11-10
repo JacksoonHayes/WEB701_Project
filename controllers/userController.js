@@ -4,7 +4,7 @@ const User = require('../models/userModel');
 
 // Register a new user
 exports.addUser = async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     try {
         // Check if the email is already registered
@@ -18,7 +18,7 @@ exports.addUser = async (req, res) => {
         const hash = await bcrypt.hash(password, salt);
 
         // Create and save the new user
-        const newUser = new User({ name, email, password: hash });
+        const newUser = new User({ name, email, password: hash, role });
         await newUser.save();
 
         return res.status(201).json({ success: true, message: "User registered successfully" });

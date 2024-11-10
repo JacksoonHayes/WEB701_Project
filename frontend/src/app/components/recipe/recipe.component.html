@@ -6,8 +6,12 @@
                <label for="ingredients">Enter ingredients (comma-separated):</label>
                <input type="text" id="ingredients" [(ngModel)]="ingredients" name="ingredients" class="form-control" placeholder="e.g., tomatoes, basil, cheese" required>
            </div>
-           <button type="submit" class="btn btn-custom mt-2">Get Recipe</button>
+           <button type="submit" class="btn btn-custom mt-2" [disabled]="isTyping">Get Recipe</button>
        </form>
+
+       <div *ngIf="loadingRequest" class="thinking mt-2">
+        <p>Thinking...</p>
+       </div>
 
        <div *ngIf="displayedText" class="recipe-output mt-4" [innerHTML]="displayedText">
            <h4>Your Recipe:</h4>

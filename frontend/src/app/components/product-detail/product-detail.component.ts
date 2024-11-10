@@ -17,7 +17,6 @@ import { CartService } from '../../services/cart.service';
 export class ProductDetailComponent implements OnInit {
   product: any; // Stores the product details
   quantity: number = 1; // Default quantity for purchase
-  selectedOption: string = 'One-time Purchase'; // Default payment option
   weights: string[] = ['250g', '500g', '750g', '1kg', '5kg'];
   selectedWeight: string = '250g';
   weightPrices: { [key: string]: number } = {
@@ -32,7 +31,6 @@ displayedPrice: number = this.weightPrices['250g'];
   constructor(
       private route: ActivatedRoute,
       private productService: ProductService,
-      private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -50,24 +48,12 @@ displayedPrice: number = this.weightPrices['250g'];
       );
   }
 
-  addToCart(): void {
-    const item = {
-      name: this.product.name,
-      price: this.displayedPrice,
-      quantity: this.quantity,
-      weight: this.selectedWeight,
-      purchaseOption: this.selectedOption
-    };
-    this.cartService.addToCart(item);
-    console.log('Item added to cart:', item);
-  }
-
-  selectOption(option: string): void {
-      this.selectedOption = option;
-  }
-
   selectWeight(weight: string): void {
     this.selectedWeight = weight;
     this.displayedPrice = this.weightPrices[weight]; // Update the displayed price
+  }
+
+  redeemVoucher(): void {
+    alert('Voucher redeemed!');
   }
 }

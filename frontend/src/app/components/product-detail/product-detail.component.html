@@ -28,26 +28,9 @@
                 </button>
             </div>
         </div>
-        
-        <!-- Purchase Options -->
-        <div class="payment-options">
-            <p>Purchase Option: {{ selectedOption }}</p>
-            <div class="option-buttons">
-                <button 
-                    [class.active]="selectedOption === 'One-time Purchase'" 
-                    (click)="selectOption('One-time Purchase')">
-                    One-time Purchase
-                </button>
-                <button 
-                    [class.active]="selectedOption === 'Monthly Subscription'" 
-                    (click)="selectOption('Monthly Subscription')">
-                    Monthly Subscription
-                </button>
-            </div>
-        </div>
 
         <!-- Add to Cart Button -->
-        <button (click)="addToCart()" class="btn btn-primary-custom">Add to Cart</button>
+        <button (click)="redeemVoucher()" class="btn btn-primary-custom">Redeem Voucher for Product</button>
     </div>
 </div>
 <app-footer></app-footer>
