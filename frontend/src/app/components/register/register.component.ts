@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ FormsModule, RouterLink ],
+  imports: [ FormsModule, RouterLink, FooterComponent ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })

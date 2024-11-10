@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
     selector: 'app-products',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, FooterComponent],
     templateUrl: './products.component.html',
     styleUrls: ['./products.component.css']
 })

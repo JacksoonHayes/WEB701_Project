@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-recipe',
   standalone: true,
-  imports: [ CommonModule, FormsModule ],
+  imports: [ CommonModule, FormsModule, FooterComponent ],
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.css']
 })

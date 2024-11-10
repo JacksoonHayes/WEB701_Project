@@ -8,6 +8,12 @@
     padding-bottom: 3rem;
 }
 
+@media screen and (max-width: 991px) {
+    .container {
+      width: auto;
+    } 
+}
+
 .title {
     text-align: center;
     margin-top: 0.75rem;   

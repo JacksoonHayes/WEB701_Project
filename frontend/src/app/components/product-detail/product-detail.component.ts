@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from '../footer/footer.component';
 
 import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
@@ -9,7 +10,7 @@ import { CartService } from '../../services/cart.service';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, FooterComponent],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
