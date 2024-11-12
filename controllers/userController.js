@@ -17,8 +17,11 @@ exports.addUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
 
+        // Determine initial voucher count based on role
+        const vouchers = role === 'beneficiary' ? 10 : 0;
+
         // Create and save the new user
-        const newUser = new User({ name, email, password: hash, role });
+        const newUser = new User({ name, email, password: hash, role, vouchers });
         await newUser.save();
 
         return res.status(201).json({ success: true, message: "User registered successfully" });
@@ -32,29 +35,31 @@ exports.getUserByEmail = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        // Find user by email
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).json({ success: false, msg: 'User not found' });
         }
 
-        // Compare provided password with stored hashed password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(401).json({ success: false, msg: 'Incorrect password' });
         }
 
-        // Generate JWT token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: 21600 }); // 6 hours
+        // Generate JWT token with role
+        const token = jwt.sign(
+            { id: user._id, role: user.role },
+            process.env.JWT_SECRET,
+            { expiresIn: 21600 }
+        );
 
-        // Send success response with token and user data
         return res.json({
             success: true,
             token: token,
             user: {
                 id: user._id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                role: user.role
             }
         });
     } catch (error) {

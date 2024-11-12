@@ -3,47 +3,48 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ProfileDonorComponent } from '../profile-donor/profile-donor.component';
+import { ProfileBeneficiaryComponent } from '../profile-beneficiary/profile-beneficiary.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ProfileDonorComponent, ProfileBeneficiaryComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   user: any;
+  role: string = "";
   newPassword: string = "";
   isLoggedIn: boolean = false;
   orders: any[] = [];
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private http: HttpClient
+    private router: Router
   ) {}
   
   ngOnInit() {
     const profileObservable = this.authService.getProfile();
   
     if (profileObservable) {
-      profileObservable.subscribe(
-        (profile: any) => {
-          this.user = profile.user;
-          this.getUserOrders();
-        },
-        (err) => {
-          console.log(err);
-          this.router.navigate(['/login']);
-        }
-      );
+        profileObservable.subscribe(
+            (profile: any) => {
+              this.user = profile.user;
+              this.role = this.user.role;
+            },
+            (err) => {
+                console.log(err);
+                this.router.navigate(['/login']);
+            }
+        );
     } else {
-      this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
     }
-    // Check if the user is logged in
     this.isLoggedIn = this.authService.isLoggedIn();
-  }
+}
+
   
   updateDetails() {
     if (this.newPassword) {
@@ -64,16 +65,8 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  getUserOrders(): void {
-    const headers = new HttpHeaders({
-        Authorization: `Bearer ${localStorage.getItem('token')}`
-    });
-    
-    this.http.get<any[]>('http://localhost:3000/orders', { headers }).subscribe(
-      (orders) => (this.orders = orders),
-      (err) => console.error('Failed to retrieve orders:', err)
-    );
-    console.log(this.orders);
+  redeemToken() {
+    // Method logic for redeeming tokens
   }
 
 }

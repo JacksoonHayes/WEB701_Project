@@ -39,6 +39,7 @@ export class AuthService {
     this.isLoggedInSubject.next(true);
   }
 
+
   getProfile() {
     let token: string | null = null;
     // Check if localStorage is available

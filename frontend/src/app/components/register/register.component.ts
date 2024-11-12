@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service';
@@ -9,7 +8,7 @@ import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ FormsModule, RouterLink, FooterComponent ],
+  imports: [ FormsModule, FooterComponent ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
@@ -17,6 +16,7 @@ export class RegisterComponent {
   name: string = '';
   email: string = '';
   password: string = '';
+  role: string = 'donor';
 
   constructor(
     private validateService: ValidateService,
@@ -28,32 +28,30 @@ export class RegisterComponent {
     const user = {
       name: this.name,
       email: this.email,
-      password: this.password
+      password: this.password,
+      role: this.role
     };
 
     // Validate the form data
     if (!this.validateService.validateRegister(user)) {
-      // Registration successful message
       alert('Please fill in all fields correctly.');
     } else if (!this.validateService.validateEmail(user.email)) {
-      // Show an error message if email is invalid
       alert('Please enter a valid email address.');
     }
+
+    // Register the user
     this.authService.registerUser(user).subscribe(
       (res: any) => {
-        // Registration successful
         alert('Registration successful!');
         this.router.navigate(['/login']);
       },
       (err: any) => {
-        // Check if the error is due to a duplicate email
         if (err.status === 400 && err.error.msg === 'Email is already registered') {
           alert('This email is already registered. Please use another one.');
         } else {
           alert('Registration failed. Please try again.');
         }
-    });
+      }
+    );
   }
 }
-
-
