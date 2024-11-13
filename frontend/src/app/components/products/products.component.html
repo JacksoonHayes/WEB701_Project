@@ -1,6 +1,6 @@
 <div class="product-catalog">
     <div *ngFor="let listing of donationListings" class="product-card">
-        <img [src]="listing.image" alt="{{listing.name}}" class="product-image"/>
+        <img alt="{{listing.name}}" class="product-image" [src]="listing.image || 'https://images.unsplash.com/photo-1563746098251-d35aef196e83?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'"/>
         <h3>{{ listing.name }}</h3>
         <p><strong>Location: {{ listing.location }}</strong></p>
         <p *ngIf="listing.stock > 0">Available Stock: {{ listing.stock }}</p>

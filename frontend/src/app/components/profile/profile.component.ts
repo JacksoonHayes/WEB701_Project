@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
             (err) => {
                 console.log(err);
                 this.router.navigate(['/login']);
+                return;
             }
         );
     } else {

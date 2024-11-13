@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../footer/footer.component';
 import { ProductService } from '../../services/donation.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-detail',
@@ -13,25 +15,20 @@ import { ProductService } from '../../services/donation.service';
   styleUrl: './product-detail.component.css'
 })
 export class ProductDetailComponent implements OnInit {
-  product: any; // Stores the product details
-  quantity: number = 1; // Default quantity for purchase
-  weights: string[] = ['250g', '500g', '750g', '1kg', '5kg'];
-  selectedWeight: string = '250g';
-  weightPrices: { [key: string]: number } = {
-    '250g': 3.99,
-    '500g': 6.99,
-    '750g': 9.99,
-    '1kg': 12.99,
-    '5kg': 35.99
-};
-displayedPrice: number = this.weightPrices['250g'];
+  product: any;
 
   constructor(
       private route: ActivatedRoute,
+      private router: Router,
       private productService: ProductService,
+      private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+      if (!this.authService.isLoggedIn()) {
+        this.router.navigate(['/login']);
+        return;
+      }
       const productId = this.route.snapshot.paramMap.get('id');
       if (productId) {
           this.getProductById(productId);
@@ -44,11 +41,6 @@ displayedPrice: number = this.weightPrices['250g'];
           (data) => this.product = data,
           (error) => console.error(error)
       );
-  }
-
-  selectWeight(weight: string): void {
-    this.selectedWeight = weight;
-    this.displayedPrice = this.weightPrices[weight]; // Update the displayed price
   }
 
   redeemVoucher(): void {

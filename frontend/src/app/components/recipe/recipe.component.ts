@@ -32,6 +32,7 @@ export class RecipeComponent implements OnInit {
     // Check if the user is logged in
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
+      return;
     }
   }
 

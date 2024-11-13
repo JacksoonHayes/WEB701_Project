@@ -11,6 +11,9 @@
 .form-group {
   margin-top: 25px;
 }
+.form-control {
+  border: 1px solid #dedddd;
+}
 
 .btn {
   margin: 40px;

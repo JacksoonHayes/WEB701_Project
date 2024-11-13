@@ -18,7 +18,13 @@ export class AuthService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    let token: string | null = null;
+    if (typeof window !== 'undefined' && window.localStorage) {
+      token = localStorage.getItem('token');
+      return token;
+    } else {
+      return null;
+    }
   }
 
   registerUser(user: any) {
