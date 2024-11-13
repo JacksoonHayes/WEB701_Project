@@ -1,17 +1,32 @@
 .profile-container {
+  gap: 20px; /* Adds space between columns */
   padding-top: 50px;
-  max-width: 1200px; /* Increased max-width for larger columns */
+  max-width: 1500px; /* Increased max-width for larger columns */
   margin: 0 auto;
+  margin-bottom: 50px;
 }
 
 @media screen and (max-width: 991px) {
   .profile-container {
       max-width: auto;
       padding: 20px;
+      flex-direction: column; /* Stacks columns vertically on smaller screens */
   }
 }
 
-.profile-left, .profile-right {
+.profile-left {
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  box-shadow: 5px 5px 8px rgba(111, 46, 172, 0.1);
+  border-radius: 10px;
+  background: #ffffff;
+  height: auto; /* Only takes the height of its content */
+  align-self: flex-start; /* Aligns to the start to prevent stretching */
+  max-width: 400px; /* Optional: Controls the width of the left column */
+}
+
+.profile-right {
+  flex-grow: 1; /* Allows the right column to take remaining space */
   padding: 1.5rem;
   border: 1px solid #ddd;
   box-shadow: 5px 5px 8px rgba(111, 46, 172, 0.1);
@@ -27,7 +42,7 @@
 }
 
 .update-password-container {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 
 .list-group-item {
@@ -38,8 +53,8 @@
 .btn-custom {
   background-color: #f9eafa;
   color: rgb(74, 74, 74);
-  font-size: 14px;
-  padding: 10px 20px;
+  font-size: 12px;
+  padding: 6px 16px;
   border: 1px solid #c0c0c0;
   border-radius: 10px;
   transition: background-color 0.3s;

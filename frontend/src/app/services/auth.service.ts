@@ -17,6 +17,10 @@ export class AuthService {
     return this.isLoggedInSubject.asObservable();
   }
 
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
   registerUser(user: any) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');

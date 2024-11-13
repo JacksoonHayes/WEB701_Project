@@ -3,9 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from '../footer/footer.component';
-
-import { ProductService } from '../../services/product.service';
-import { CartService } from '../../services/cart.service';
+import { ProductService } from '../../services/donation.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -42,7 +40,7 @@ displayedPrice: number = this.weightPrices['250g'];
 
   // Fetch product data from the backend
   getProductById(id: string): void {
-      this.productService.getProductById(id).subscribe(
+      this.productService.getDonationById(id).subscribe(
           (data) => this.product = data,
           (error) => console.error(error)
       );

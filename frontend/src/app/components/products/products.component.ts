@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
+import { ProductService } from '../../services/donation.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
@@ -12,19 +12,18 @@ import { FooterComponent } from '../footer/footer.component';
     styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-    products: any[] = [];
+    donationListings: any[] = [];
 
     constructor(private productService: ProductService, private router: Router) {}
 
     ngOnInit(): void {
-        this.productService.getProducts().subscribe(
-            (data) => this.products = data,
+        this.productService.getDonations().subscribe(
+            (data) => this.donationListings = data,
             (error) => console.error(error)
         );
     }
 
-    // Navigate to the product details page
-    viewProduct(productId: string): void {
-        this.router.navigate(['/product', productId]);
+    viewListing(listingId: string): void {
+        this.router.navigate(['/donation', listingId]);
     }
 }

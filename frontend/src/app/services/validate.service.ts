@@ -19,4 +19,9 @@ export class ValidateService {
     const re = /\S+@\S+\.\S+/;
     return re.test(email);
   }
+
+  validateListing(listing: any): boolean {
+    const { name, description, location, stock } = listing;
+    return !!(name && description && location && stock !== null && stock !== undefined);
+  }
 }

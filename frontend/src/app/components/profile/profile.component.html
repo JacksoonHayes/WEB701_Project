@@ -2,15 +2,15 @@
     <div class="row">
         <!-- Left Column: Generic Profile Information -->
         <div class="col-md-5 profile-left">
-            <h1>Hello, {{ user.name }}!</h1>
+            <h1>Hello, {{ user?.name }}!</h1>
             <ul class="list-group mb-4">
-                <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
-                <li class="list-group-item"><strong>Name:</strong> {{ user.name }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ user?.email }}</li>
+                <li class="list-group-item"><strong>Name:</strong> {{ user?.name }}</li>
             </ul>
 
             <!-- Password Update -->
             <div class="update-password-container">
-                <h4>Update Your Password</h4>
+                <h4 class="text-center">Update Your Password</h4>
                 <form (submit)="updateDetails()">
                     <div class="form-group">
                         <input type="password" id="password" [(ngModel)]="newPassword" name="password" class="form-control" placeholder="Enter new password" required>

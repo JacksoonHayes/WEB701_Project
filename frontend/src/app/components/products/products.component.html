@@ -1,11 +1,10 @@
 <div class="product-catalog">
-    <div *ngFor="let product of products" class="product-card">
-        <img [src]="product.image" alt="{{product.name}}" class="product-image"/>
-        <h3>{{ product.name }}</h3>
-        <p><strong>${{ product.price }} for {{ product.baseWeight }}</strong></p>
-        <p *ngIf="product.discount">Discount: {{ product.discount }}%</p>
-        <button class="btn btn-custom" (click)="viewProduct(product._id)">View Product</button>
+    <div *ngFor="let listing of donationListings" class="product-card">
+        <img [src]="listing.image" alt="{{listing.name}}" class="product-image"/>
+        <h3>{{ listing.name }}</h3>
+        <p><strong>Location: {{ listing.location }}</strong></p>
+        <p *ngIf="listing.stock > 0">Available Stock: {{ listing.stock }}</p>
+        <button class="btn btn-custom" (click)="viewListing(listing._id)">View Listing</button>
     </div>
- </div>
- <app-footer></app-footer>
- 
+</div>
+<app-footer></app-footer>

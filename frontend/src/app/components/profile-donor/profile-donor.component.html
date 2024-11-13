@@ -1,5 +1,54 @@
 <div class="donor-dashboard">
-    <h3>Donation Dashboard</h3>
-    <p>Welcome to your donation dashboard. Here you can register products for donation.</p>
-    <!-- Add more donor-specific content here -->
+    <div class="dashboard-header">
+        <h3>Donation Dashboard</h3>
+        <button (click)="toggleForm()" class="btn btn-custom">
+            {{ editMode ? 'Cancel Edit' : showForm ? 'Hide Form' : 'Add New Listing' }}
+        </button>
+    </div>
+
+    <!-- Add New Listing or Edit Listing Form -->
+    <div [ngClass]="{'show': showForm}" class="listing-form">
+        <h4>{{ editMode ? 'Edit Listing' : 'Add New Listing' }}</h4>
+        <form (submit)="editMode ? updateListing() : addListing()" class="mb-4">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" [(ngModel)]="newListing.name" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea [(ngModel)]="newListing.description" name="description" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" [(ngModel)]="newListing.location" name="location" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Stock</label>
+                <input type="number" [(ngModel)]="newListing.stock" name="stock" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" [(ngModel)]="newListing.image" name="image" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-custom">{{ editMode ? 'Update' : 'Add' }} Listing</button>
+            <button type="button" class="btn btn-custom" *ngIf="editMode" (click)="resetForm()">Cancel</button>
+        </form>
+    </div>
+
+    <!-- Donation Listings Section -->
+    <div class="donation-listings">
+        <p>Your Donation Listings</p>
+        <div *ngFor="let listing of listings" class="listing-card">
+            <div class="listing-header">
+                <h5>{{ listing.name }}</h5>
+                <div>
+                    <button class="btn btn-custom" (click)="editListing(listing)">Edit</button>
+                    <button class="btn btn-custom" (click)="deleteListing(listing._id)">Delete</button>
+                </div>
+            </div>
+            <p>{{ listing.description }}</p>
+            <p><strong>Location:</strong> {{ listing.location }}</p>
+            <p><strong>Stock:</strong> {{ listing.stock }}</p>
+        </div>
+    </div>
 </div>
