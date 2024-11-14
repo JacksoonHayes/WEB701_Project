@@ -20,7 +20,7 @@ npm install
 PORT=3001
 MONGODB_URI=mongodb+srv://dbAdmin:admin@growandgive.x8icc.mongodb.net/?retryWrites=true&w=majority&appName=growandgive
 JWT_SECRET="secret"
-OPENAI_API_KEY=
+
 
 ```
 
