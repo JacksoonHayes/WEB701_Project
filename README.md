@@ -15,7 +15,7 @@ We require the following features on the website:
 npm install
 ```
 
-2. Create a .env file in the root directory and add the following:
+2. Create a .env file in the root directory and add the following (replace the OPENAI_API_KEY with your own API key or contact me for the key):
 ```bash
 PORT=3001
 MONGODB_URI=mongodb+srv://dbAdmin:admin@growandgive.x8icc.mongodb.net/?retryWrites=true&w=majority&appName=growandgive
