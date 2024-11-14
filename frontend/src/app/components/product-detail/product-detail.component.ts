@@ -6,6 +6,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { ProductService } from '../../services/donation.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-detail',
@@ -21,7 +22,8 @@ export class ProductDetailComponent implements OnInit {
       private route: ActivatedRoute,
       private router: Router,
       private productService: ProductService,
-      private authService: AuthService
+      private authService: AuthService,
+      private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +45,18 @@ export class ProductDetailComponent implements OnInit {
       );
   }
 
+    // product-detail.component.ts
   redeemVoucher(): void {
-    alert('Voucher redeemed!');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.authService.getToken()}` });
+
+    this.http.post('http://localhost:3000/orders', { productId: this.product._id }, { headers }).subscribe(
+      (response) => {
+        alert('Voucher redeemed and order created!');
+      },
+      (error) => {
+        console.error('Error redeeming voucher:', error);
+        alert('Failed to redeem voucher.');
+      }
+    );
   }
 }

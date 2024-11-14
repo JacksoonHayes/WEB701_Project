@@ -31,8 +31,4 @@ export class ProfileBeneficiaryComponent implements OnInit {
       (err) => console.error('Failed to retrieve orders:', err)
     );
   }
-
-  redeemToken() {
-    // Method logic for redeeming tokens
-  }
 }

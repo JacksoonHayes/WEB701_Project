@@ -20,6 +20,7 @@ npm install
 PORT=3001
 MONGODB_URI=mongodb+srv://dbAdmin:admin@growandgive.x8icc.mongodb.net/?retryWrites=true&w=majority&appName=growandgive
 JWT_SECRET="secret"
+OPENAI_API_KEY=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
 ```
 
 3. To run the backend server, run the following:

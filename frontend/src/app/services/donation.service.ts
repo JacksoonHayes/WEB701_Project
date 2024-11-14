@@ -25,4 +25,12 @@ export class ProductService {
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
         return this.http.get<any>(`${this.apiUrl}/${id}`, { headers });
     }
+
+    // donation.service.ts
+    getDonorListings(): Observable<any> {
+        const token = this.authService.getToken();
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+        return this.http.get<any>(`${this.apiUrl}/donor`, { headers });
+    }
+
 }

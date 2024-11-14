@@ -43,8 +43,6 @@
 }
 
 .listing-form {
-    margin-top: 20px;
-    margin-bottom: 25px;
     background-color: #f9f9f9;
     padding: 15px;
     border: 1px solid #ddd;
@@ -57,6 +55,8 @@
 }
 
 .listing-form.show {
+    margin-top: 20px;
+    margin-bottom: 25px;
     opacity: 1;
     max-height: 1000px;
     transition: opacity 0.4s ease, max-height 0.4s ease;
@@ -66,4 +66,30 @@
     background-color: #ffffff;
     margin-bottom: 15px;
     border: 1px solid #dedddd;
+}
+
+/* Style for inline edit form with smooth transition */
+.edit-form {
+    opacity: 0;
+    max-height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+.edit-form.show {
+    opacity: 1;
+    max-height: 1000px; /* Adjust as needed for content height */
+    transition: opacity 0.4s ease, max-height 0.4s ease;
+    margin-top: 30px;
+}
+
+.form-group textarea {
+    height: 125px;
+}
+
+.thinking {
+    margin: 0 10px;
+    margin-top: 15px;
 }

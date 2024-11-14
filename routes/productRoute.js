@@ -3,6 +3,8 @@ const router = express.Router();
 const productController = require('../controllers/productController');
 const passport = require('passport');
 
+router.get('/donor', passport.authenticate('jwt', { session: false }), productController.getDonorListings);
+
 router.get('/', passport.authenticate('jwt', { session: false }), productController.getAllProducts);
 router.post('/add', passport.authenticate('jwt', { session: false }), productController.addProduct);
 router.put('/update/:id', passport.authenticate('jwt', { session: false }), productController.updateProduct);

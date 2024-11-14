@@ -1,15 +1,38 @@
 <div class="donor-dashboard">
+    <h3>Pending Orders</h3>
+    <table *ngIf="orders.length > 0" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>{{ order.productId?.name }}</td>
+                <td>{{ order.userId?.name }}</td>
+                <td>{{ order.orderDate | date }}</td>
+                <td>
+                    <button (click)="approveOrder(order._id)" class="btn btn-custom">Approve</button>
+                    <button (click)="declineOrder(order._id)" class="btn btn-custom">Decline</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="orders.length === 0">No pending orders at the moment.</p>
     <div class="dashboard-header">
         <h3>Donation Dashboard</h3>
         <button (click)="toggleForm()" class="btn btn-custom">
-            {{ editMode ? 'Cancel Edit' : showForm ? 'Hide Form' : 'Add New Listing' }}
+            {{ showForm ? 'Hide Form' : 'Add New Listing' }}
         </button>
     </div>
 
     <!-- Add New Listing or Edit Listing Form -->
     <div [ngClass]="{'show': showForm}" class="listing-form">
-        <h4>{{ editMode ? 'Edit Listing' : 'Add New Listing' }}</h4>
-        <form (submit)="editMode ? updateListing() : addListing()" class="mb-4">
+        <h4>Add New Listing</h4>
+        <form (submit)="addListing()" class="mb-4">
             <div class="form-group">
                 <label>Name</label>
                 <input type="text" [(ngModel)]="newListing.name" name="name" class="form-control" required>
@@ -30,25 +53,64 @@
                 <label>Image URL</label>
                 <input type="text" [(ngModel)]="newListing.image" name="image" class="form-control">
             </div>
-            <button type="submit" class="btn btn-custom">{{ editMode ? 'Update' : 'Add' }} Listing</button>
-            <button type="button" class="btn btn-custom" *ngIf="editMode" (click)="resetForm()">Cancel</button>
+            <button type="submit" class="btn btn-custom">Add Listing</button>
+            <button type="button" class="btn btn-custom" (click)="generateDescription()">
+                Generate Detailed Description
+            </button>
+            <!-- Display "thinking..." while waiting for response -->
+            <div *ngIf="loadingRequest" class="thinking">
+                <p>Thinking...</p>
+            </div>
         </form>
     </div>
 
-    <!-- Donation Listings Section -->
-    <div class="donation-listings">
-        <p>Your Donation Listings</p>
-        <div *ngFor="let listing of listings" class="listing-card">
-            <div class="listing-header">
-                <h5>{{ listing.name }}</h5>
-                <div>
-                    <button class="btn btn-custom" (click)="editListing(listing)">Edit</button>
-                    <button class="btn btn-custom" (click)="deleteListing(listing._id)">Delete</button>
-                </div>
+   <!-- Donation Listings Section -->
+   <div class="donation-listings">
+    <p>Your Donation Listings</p>
+    <div *ngFor="let listing of listings" class="listing-card">
+        <div class="listing-header">
+            <h5>{{ listing.name }}</h5>
+            <div>
+                <button class="btn btn-custom" (click)="editListing(listing)">Edit</button>
+                <button class="btn btn-custom" (click)="deleteListing(listing._id)">Delete</button>
             </div>
-            <p>{{ listing.description }}</p>
-            <p><strong>Location:</strong> {{ listing.location }}</p>
-            <p><strong>Stock:</strong> {{ listing.stock }}</p>
+        </div>
+        <p>{{ listing.description }}</p>
+        <p><strong>Location:</strong> {{ listing.location }}</p>
+        <p><strong>Stock:</strong> {{ listing.stock }}</p>
+
+        <!-- Inline Edit Form under each listing when in edit mode -->
+        <div [ngClass]="{'show': editingId === listing._id}" class="edit-form">
+            <h4>Edit Listing</h4>
+            <form (submit)="updateListing()">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" [(ngModel)]="newListing.name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea [(ngModel)]="newListing.description" name="description" class="form-control" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" [(ngModel)]="newListing.location" name="location" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Stock</label>
+                    <input type="number" [(ngModel)]="newListing.stock" name="stock" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="text" [(ngModel)]="newListing.image" name="image" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-custom">Update Listing</button>
+                <button type="button" class="btn btn-custom" (click)="generateDescription()">
+                    Generate Detailed Description
+                </button>
+                <button type="button" class="btn btn-custom cancel-btn" (click)="cancelEdit()">Cancel</button>
+            </form>
         </div>
     </div>
 </div>
+
+

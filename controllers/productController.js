@@ -97,3 +97,15 @@ exports.getProductById = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// Fetch all products for the logged-in donor
+exports.getDonorListings = async (req, res) => {
+    const donorId = req.user._id;
+    try {
+        const products = await Product.find({ donorId });
+        res.json(products);
+    } catch (error) {
+        console.error("Error fetching donor's products:", error);
+        res.status(500).json({ message: error.message });
+    }
+};

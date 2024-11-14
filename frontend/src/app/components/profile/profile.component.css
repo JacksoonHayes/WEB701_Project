@@ -32,6 +32,7 @@
   box-shadow: 5px 5px 8px rgba(111, 46, 172, 0.1);
   border-radius: 10px;
   background: #ffffff;
+  height: auto; /* Only takes the height of its content */
 }
 
 .profile-left h1,
@@ -62,4 +63,8 @@
 
 .btn-custom:hover {
   background-color: #f5d1fc;
+}
+
+.vouchers-container {
+  padding-top: 20px;
 }
