@@ -20,7 +20,7 @@ npm install
 PORT=3001
 MONGODB_URI=mongodb+srv://dbAdmin:admin@growandgive.x8icc.mongodb.net/?retryWrites=true&w=majority&appName=growandgive
 JWT_SECRET="secret"
-OPENAI_API_KEY=
+OPENAI_API_KEY=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
 
 ```
 
