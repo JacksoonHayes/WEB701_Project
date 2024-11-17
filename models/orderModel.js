@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Order schema
 const OrderSchema = mongoose.Schema({
     userId: { // Beneficiary's user ID
         type: mongoose.Schema.Types.ObjectId,
@@ -16,7 +17,7 @@ const OrderSchema = mongoose.Schema({
         enum: ['pending', 'approved', 'canceled'],
         default: 'pending'
     },
-    orderDate: {
+    orderDate: { // Date the order was created
         type: Date,
         default: Date.now
     }

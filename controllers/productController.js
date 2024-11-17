@@ -10,8 +10,8 @@ exports.addProduct = async (req, res) => {
         return res.status(400).json({ message: "Donor ID is required" });
     }
 
-    try {
-        const product = new Product({
+    try { 
+        const product = new Product({  // Create a new product object
             name,
             description,
             location,
@@ -20,7 +20,7 @@ exports.addProduct = async (req, res) => {
             donorId
         });
 
-        const result = await product.save();
+        const result = await product.save(); // Save the product to the database
         console.log("Product created:", result);
         res.status(201).json(result);
     } catch (error) {
@@ -32,10 +32,10 @@ exports.addProduct = async (req, res) => {
 // Update a donation listing
 exports.updateProduct = async (req, res) => {
     try {
-        const product = await Product.findByIdAndUpdate(
+        const product = await Product.findByIdAndUpdate( // Find and update the product
             req.params.id,
-            {
-                name: req.body.name,
+            { 
+                name: req.body.name, 
                 description: req.body.description,
                 location: req.body.location,
                 image: req.body.image,
@@ -44,7 +44,7 @@ exports.updateProduct = async (req, res) => {
             { new: true }
         );
 
-        if (product) {
+        if (product) { // If the product is found and updated
             res.json(product);
         } else {
             res.status(404).json({ message: 'Product not found' });
@@ -57,10 +57,10 @@ exports.updateProduct = async (req, res) => {
 // Delete a donation listing
 exports.deleteProduct = async (req, res) => {
     try {
-        const product = await Product.findByIdAndDelete(req.params.id);
-        if (product) {
+        const product = await Product.findByIdAndDelete(req.params.id); // Find and delete the product
+        if (product) { // If the product is found and deleted
             res.json({ message: 'Product removed' });
-        } else {
+        } else { // If the product is not found
             res.status(404).json({ message: 'Product not found' });
         }
     } catch (error) {

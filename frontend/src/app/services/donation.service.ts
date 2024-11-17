@@ -14,7 +14,7 @@ export class ProductService {
         private authService: AuthService
     ) {}
 
-    // get all products from the database
+    // get all donations from the database
     getDonations(): Observable<any> {
         const token = this.authService.getToken();
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Set headers
@@ -28,7 +28,7 @@ export class ProductService {
         return this.http.get<any>(`${this.apiUrl}/${id}`, { headers });
     }
 
-    // donation.service.ts
+    // get all donations from the database for a specific user
     getDonorListings(): Observable<any> {
         const token = this.authService.getToken();
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

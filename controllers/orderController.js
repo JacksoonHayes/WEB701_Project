@@ -36,13 +36,13 @@ exports.createOrder = async (req, res) => {
 exports.updateOrderStatus = async (req, res) => {
     const { orderId, action } = req.body;
     try {
-        const order = await Order.findById(orderId);
+        const order = await Order.findById(orderId); // Find the order by ID
 
         if (!order) return res.status(404).json({ message: "Order not found." });
 
-        if (action === 'approve') {
+        if (action === 'approve') { // Update order status to approved
             order.status = 'approved';
-        } else if (action === 'decline') {
+        } else if (action === 'decline') { // Update order status to canceled
             order.status = 'canceled';
 
             // Refund the voucher to the beneficiary
@@ -50,8 +50,8 @@ exports.updateOrderStatus = async (req, res) => {
             user.vouchers += 1;
             await user.save();
         }
-
-        await order.save();
+        
+        await order.save(); // Save the updated order status
         res.json(order);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -61,7 +61,7 @@ exports.updateOrderStatus = async (req, res) => {
 // Get orders for a user
 exports.getUserOrders = async (req, res) => {
     try {
-        const orders = await Order.find({ userId: req.user.id });
+        const orders = await Order.find({ userId: req.user.id }); // Find orders by user ID
         res.json(orders);
     } catch (error) {
         res.status(500).json({ message: error.message });

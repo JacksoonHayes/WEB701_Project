@@ -10,6 +10,6 @@ router.get('/', passport.authenticate('jwt', { session: false }), productControl
 router.post('/add', passport.authenticate('jwt', { session: false }), productController.addProduct); // Add a new product
 router.put('/update/:id', passport.authenticate('jwt', { session: false }), productController.updateProduct); // Update a product
 router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), productController.deleteProduct); // Delete a product
-router.get('/:id', passport.authenticate('jwt', { session: false }), productController.getProductById); // Get a specific product by ID
+router.get('/:id', passport.authenticate('jwt', { session: false }), productController.getProductById); // Get a specific product by its ID
 
 module.exports = router;
