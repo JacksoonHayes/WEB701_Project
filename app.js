@@ -57,6 +57,7 @@ app.use((err, req, res, next) => {
     }
 });
 
+// Default route
 app.get('/', (req, res) => {
     res.send('Backend server is running successfully');
 });

@@ -14,7 +14,7 @@ const generateRecipe = async (req, res) => {
     const currentTime = Date.now();
 
     // Rate limit check
-    if (currentTime - lastRequestTime < REQUEST_INTERVAL) {
+    if (currentTime - lastRequestTime < REQUEST_INTERVAL) { // Check if the time elapsed since the last request is less than the interval
         return res.status(429).json({ message: 'Please wait a moment before making another request.' });
     }
     
@@ -23,7 +23,7 @@ const generateRecipe = async (req, res) => {
     try {
         const { ingredients } = req.body; // Expecting an array of ingredients
 
-        // Construct a dynamic prompt for ChatGPT
+        // Constructs prompt for ChatGPT
         const prompt = `Create a detailed recipe that incorporates the following ingredients: ${ingredients.join(', ')}. 
         Format the response as HTML with the following structure:
         - An <h2> tag for the recipe title.
@@ -36,9 +36,9 @@ const generateRecipe = async (req, res) => {
         Ensure the response is at most 750 tokens long.`;
         
 
-        // Call OpenAI's chat completion with dynamic content
-        const response = await openai.chat.completions.create({
-            model: "gpt-4o-mini", // or "gpt-4" if available in your account
+        // Call OpenAI's chat completion with prompt content
+        const response = await openai.chat.completions.create({ 
+            model: "gpt-4o-mini", // Use the GPT-4 model for recipe generation
             messages: [
                 { role: "user", content: prompt }
             ],

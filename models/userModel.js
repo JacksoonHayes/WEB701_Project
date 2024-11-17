@@ -2,26 +2,26 @@ const mongoose = require('mongoose');
 
 // User Schema for MongoDB
 const UserSchema = mongoose.Schema({
-    name: {
+    name: { // Name of the user
         type: String
     },
-    email: {
+    email: { // Email of the user
         type: String,
         required: true
     },
-    password: {
+    password: { // Password of the user
         type: String,
         required: true
     },
-    isAdmin: {
+    isAdmin: { // Admin status of the user
         type: Boolean,
         default: false
     },
-    role: {
+    role: { // Role of the user
         type: String,
         required: true,
     },  
-    vouchers: {
+    vouchers: { // Number of vouchers the user has
         type: Number,
         default: 0
     },

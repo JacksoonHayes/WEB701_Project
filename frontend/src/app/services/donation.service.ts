@@ -14,12 +14,14 @@ export class ProductService {
         private authService: AuthService
     ) {}
 
+    // get all products from the database
     getDonations(): Observable<any> {
         const token = this.authService.getToken();
-        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-        return this.http.get<any>(`${this.apiUrl}?type=donation`, { headers });
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`); // Set headers
+        return this.http.get<any>(`${this.apiUrl}?type=donation`, { headers }); // Get request to get all products
     }
     
+    // get product by id
     getDonationById(id: string): Observable<any> {
         const token = this.authService.getToken();
         const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);

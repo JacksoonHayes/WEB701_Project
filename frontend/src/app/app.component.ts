@@ -16,9 +16,9 @@ export class AppComponent implements OnInit {
   title = '-Grow&Give-';
 
   ngOnInit(): void {
-    // // Clear localStorage on app start to log out any saved session
-    // if (typeof window !== 'undefined' && window.localStorage) {
-    //   localStorage.clear();
-    // } 
+    // Clear localStorage on app start to log out any saved session
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.clear();
+    } 
   }
 }
